@@ -33,8 +33,8 @@ module ApplicationHelper
   def check_friend_status(friendship)
     if friendship.acceptance_status == 'pending' && friendship.user == current_user
       render 'users/pending'
-    elsif friendship.acceptance_status == 'confirmed'
-      render 'users/friends'
+    # elsif friendship.acceptance_status == 'confirmed'
+    #   render 'users/friends'
     elsif friendship.acceptance_status == 'pending' && friendship.friend == current_user
       render 'users/confirm_friend'
     end

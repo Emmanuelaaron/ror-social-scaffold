@@ -1,11 +1,16 @@
 class FriendshipsController < ApplicationController
   def create
-    # @friend = Friendship.create(user_id: user_id, friend_id: friend_id)
     current_user.requests_sent.create(friend_id: params[:user_id], acceptance_status: 'pending')
-    # redirect_to @users
+    redirect_to users_path
   end
 
-  def destroy; end
+  def destroy
+    # byebug
+    # current_user.requests_received.find_by(friend_id: params[:user_id]).destroy
+    @friendship = Friendship.find_by(user_id: params[:user_id])
+    @friendship.destroy
+    redirect_to users_path
+  end
 
   def update; end
 end
