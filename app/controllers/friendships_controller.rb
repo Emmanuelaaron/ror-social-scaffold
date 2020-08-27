@@ -12,5 +12,9 @@ class FriendshipsController < ApplicationController
     redirect_to users_path
   end
 
-  def update; end
+  def update
+    @friendship = Friendship.find_by(user_id: params[:user_id])
+    @friendship.update(acceptance_status: 'confirmed')
+    redirect_to users_path
+  end
 end
